@@ -97,11 +97,6 @@ export default {
       return d;
     },
   },
-  // computed: {
-  //   saveResultIntoHistory(data) {
-  //     this.history.push(data);
-  //   },
-  // },
 };
 </script>
 

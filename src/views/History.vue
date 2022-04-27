@@ -7,18 +7,21 @@
     <router-view />
     <div class="history" v-if="historyResults">
       <h1>Lista wyszukanych lokalizacji</h1>
-      <div v-if="historyResults">
-        <ul v-for="city in historyResults" :key="city" class="history-list">
-          <li>{{ city }}</li>
+      <div>
+        <ul v-if="historyResults.length" class="history-list">
+  
+          <li v-for="city in historyResults" :key="city">
+            {{ city }}
+          </li>
+        </ul>
+        <ul v-else class="history-list">
+          <li v-for="(item, index) in history" :key="index">
+            {{ item }}
+          </li>
         </ul>
       </div>
-      <!-- <ul class="history-list">
-        <li>Mielec</li>
-        <li>Rzeszów</li>
-        <li>Kraków</li>
-      </ul> -->
     </div>
-    <p>{{ historyResults }}</p>
+    <p style="color: white">{{ historyResults }}</p>
   </div>
 </template>
 
@@ -30,6 +33,12 @@ export default {
       history: [],
     };
   },
+  // methods: {
+  //   addNew(arr) {
+  //     this.history = [this.history, ...arr];
+  //     console.log("he", this.history);
+  //   },
+  // },
 };
 </script>
 

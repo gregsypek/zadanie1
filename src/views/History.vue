@@ -5,40 +5,26 @@
       <router-link :to="{ name: 'History' }">History</router-link>
     </nav>
     <router-view />
-    <div class="history" v-if="historyResults">
-      <h1>Lista wyszukanych lokalizacji</h1>
+    <div class="history">
+      <h1>Historia lokalizacji</h1>
       <div>
-        <ul v-if="historyResults.length" class="history-list">
-  
-          <li v-for="city in historyResults" :key="city">
-            {{ city }}
-          </li>
-        </ul>
-        <ul v-else class="history-list">
-          <li v-for="(item, index) in history" :key="index">
-            {{ item }}
-          </li>
+        <ul class="history-list">
+          <li v-for="city in data.cities" :key="city.id">{{ city.name }}</li>
         </ul>
       </div>
     </div>
-    <p style="color: white">{{ historyResults }}</p>
   </div>
 </template>
 
 <script>
+import data from "../../data/db.json";
 export default {
-  props: ["historyResults"],
   data() {
     return {
       history: [],
+      data: data,
     };
   },
-  // methods: {
-  //   addNew(arr) {
-  //     this.history = [this.history, ...arr];
-  //     console.log("he", this.history);
-  //   },
-  // },
 };
 </script>
 
@@ -62,7 +48,7 @@ export default {
   border-bottom: 2px solid transparent;
 }
 .history-list li:hover {
-  border-bottom: 2px solid #50f6ab;
+  color: #50f6ab;
   cursor: pointer;
 }
 </style>

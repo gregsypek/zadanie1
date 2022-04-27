@@ -54,7 +54,6 @@
           <div class="tem">{{ Math.round(weather.main.temp) }}</div>
         </div>
       </div>
-      <p style="color: white" v-if="historyResults">{{ historyResults }}</p>
     </main>
   </div>
 </template>
@@ -82,19 +81,32 @@ export default {
           `${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`
         )
           .then((res) => {
+            console.log("res", res);
             return res.json();
           })
-          .then(this.setResults)
+          // .then(this.setResults)
+          .then(this.setResultsIntoDb)
           .then(this.historyResults.push(this.query));
       }
-    },
-    setResults(results) {
-      console.log(results);
-      this.weather = results;
     },
     dateBuilder() {
       let d = new Date().toLocaleString();
       return d;
+    },
+    // setResults(results) {
+    //   this.weather = results;
+    // },
+    setResultsIntoDb(results) {
+      let newWeather = {
+        name: results.name,
+        time: this.dateBuilder(),
+        degree: results.main.temp,
+      };
+      fetch("http://localhost:3000/cities", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newWeather),
+      }).catch((err) => console.error(err));
     },
   },
 };

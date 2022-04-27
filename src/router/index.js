@@ -12,6 +12,7 @@ const routes = [
 		path: "/history",
 		name: "History",
 		component: History,
+		props: true,
 	},
 ];
 

@@ -1,5 +1,14 @@
 <template>
   <div class="home">
+    <nav class="main-nav">
+      <router-link :to="{ name: 'Home' }">Home</router-link>
+      <router-link
+        :to="{ name: 'History', params: { historyResults: historyResults } }"
+        >History</router-link
+      >
+    </nav>
+    <router-view />
+
     <main>
       <!-- search input -->
       <div class="search-box">
@@ -45,6 +54,7 @@
           <div class="tem">{{ Math.round(weather.main.temp) }}</div>
         </div>
       </div>
+      <p style="color: white" v-if="historyResults">{{ historyResults }}</p>
     </main>
   </div>
 </template>
@@ -60,6 +70,7 @@ export default {
       url_base: "http://api.openweathermap.org/data/2.5/",
       query: "",
       weather: {},
+      historyResults: [],
     };
   },
   methods: {
@@ -73,7 +84,8 @@ export default {
           .then((res) => {
             return res.json();
           })
-          .then(this.setResults);
+          .then(this.setResults)
+          .then(this.historyResults.push(this.query));
       }
     },
     setResults(results) {
@@ -85,6 +97,11 @@ export default {
       return d;
     },
   },
+  // computed: {
+  //   saveResultIntoHistory(data) {
+  //     this.history.push(data);
+  //   },
+  // },
 };
 </script>
 
@@ -96,15 +113,47 @@ export default {
 }
 body {
   background-color: #333;
+  color: white;
 }
 #app {
   min-height: 100vh;
   display: flex;
   justify-content: center;
 }
+
+/* nav */
+.main-nav {
+  text-align: center;
+  margin: 40px auto;
+}
+.main-nav a {
+  display: inline-block;
+  text-decoration: none;
+  margin: 0 10px;
+  color: #999;
+  font-size: 18px;
+}
+a.router-link-active {
+  border-bottom: 2px solid #00ce89;
+  padding-bottom: 4px;
+}
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #50f6ab;
+}
+
 main {
   padding: 25px;
 }
+
 .search-box {
   width: 100%;
   margin-bottom: 30px;

@@ -1,16 +1,36 @@
 <template>
   <div class="history">
-    <h1>Lista wyszukanych lokalizacji</h1>
-    <ul class="history-list">
-      <li>Mielec</li>
-      <li>Rzeszów</li>
-      <li>Kraków</li>
-    </ul>
+    <nav class="main-nav">
+      <router-link :to="{ name: 'Home' }">Home</router-link>
+      <router-link :to="{ name: 'History' }">History</router-link>
+    </nav>
+    <router-view />
+    <div class="history" v-if="historyResults">
+      <h1>Lista wyszukanych lokalizacji</h1>
+      <div v-if="historyResults">
+        <ul v-for="city in historyResults" :key="city" class="history-list">
+          <li>{{ city }}</li>
+        </ul>
+      </div>
+      <!-- <ul class="history-list">
+        <li>Mielec</li>
+        <li>Rzeszów</li>
+        <li>Kraków</li>
+      </ul> -->
+    </div>
+    <p>{{ historyResults }}</p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["historyResults"],
+  data() {
+    return {
+      history: [],
+    };
+  },
+};
 </script>
 
 <style>

@@ -19,6 +19,10 @@
       </div>
 
       <showWeather :currentWeather="currentWeather" />
+      <showWeather
+        v-if="this.$route.params"
+        :currentWeather="this.$route.params"
+      />
     </main>
   </div>
 </template>

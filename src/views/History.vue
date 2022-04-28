@@ -9,7 +9,20 @@
       <h1>Historia lokalizacji</h1>
       <div>
         <ul class="history-list">
-          <li v-for="city in data.cities" :key="city.id">{{ city.name }}</li>
+          <li v-for="city in data.cities" :key="city.id">
+            <router-link
+              :to="{
+                name: 'Home',
+                params: {
+                  name: city.name,
+                  date: city.date,
+                  degree: city.degree,
+                },
+              }"
+            >
+              {{ city.name }}
+            </router-link>
+          </li>
         </ul>
       </div>
     </div>

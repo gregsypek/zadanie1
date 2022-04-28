@@ -17,10 +17,10 @@
           @keypress="fetchWeather"
         />
       </div>
-
       <showWeather :currentWeather="currentWeather" />
+      <!-- check if params is send from history( isClicked old weather record) -->
       <showWeather
-        v-if="this.$route.params"
+        v-if="this.$route.params.name"
         :currentWeather="this.$route.params"
       />
     </main>

@@ -1,11 +1,5 @@
 <template>
   <div class="home">
-    <nav class="main-nav">
-      <router-link :to="{ name: 'Home' }">Home</router-link>
-      <router-link :to="{ name: 'History' }">History</router-link>
-    </nav>
-    <router-view />
-
     <main>
       <!-- search input -->
       <div class="search-box">
@@ -18,7 +12,7 @@
         />
       </div>
       <showWeather :currentWeather="currentWeather" />
-      <!-- check if params is send from history( isClicked old weather record) -->
+      <!-- check if params is send from history( was clicked in History page on any old weather record) -->
       <showWeather
         v-if="this.$route.params.name"
         :currentWeather="this.$route.params"
@@ -62,9 +56,7 @@ export default {
       let d = new Date().toLocaleString();
       return d;
     },
-    // setResults(results) {
-    //   this.weather = results;
-    // },
+
     setResultsIntoDb(results) {
       let newWeather = {
         name: results.name,
@@ -84,54 +76,6 @@ export default {
 </script>
 
 <style >
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  background-color: #333;
-  color: white;
-}
-#app {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-}
-
-/* nav */
-.main-nav {
-  text-align: center;
-  margin: 40px auto;
-}
-.main-nav a {
-  display: inline-block;
-  text-decoration: none;
-  margin: 0 10px;
-  color: #999;
-  font-size: 18px;
-}
-a.router-link-active {
-  border-bottom: 2px solid #00ce89;
-  padding-bottom: 4px;
-}
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #50f6ab;
-}
-
-main {
-  padding: 25px;
-}
-
 .search-box {
   width: 100%;
   margin-bottom: 30px;

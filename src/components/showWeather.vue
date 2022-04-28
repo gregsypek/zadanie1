@@ -2,7 +2,6 @@
   <!-- serach results -->
   <div class="weather-wrap" v-if="currentWeather">
     <div class="location-box">
-      {{ currentWeather }}
       <div class="location">{{ currentWeather.name }}</div>
       <div class="date">{{ currentWeather.date }}</div>
     </div>

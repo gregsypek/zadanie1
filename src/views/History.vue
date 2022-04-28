@@ -1,30 +1,23 @@
 <template>
   <div class="history">
-    <nav class="main-nav">
-      <router-link :to="{ name: 'Home' }">Home</router-link>
-      <router-link :to="{ name: 'History' }">History</router-link>
-    </nav>
-    <router-view />
-    <div class="history">
-      <h1>Historia lokalizacji</h1>
-      <div>
-        <ul class="history-list">
-          <li v-for="city in data.cities" :key="city.id">
-            <router-link
-              :to="{
-                name: 'Home',
-                params: {
-                  name: city.name,
-                  date: city.date,
-                  degree: city.degree,
-                },
-              }"
-            >
-              {{ city.name }}
-            </router-link>
-          </li>
-        </ul>
-      </div>
+    <h1>Historia lokalizacji</h1>
+    <div>
+      <ul class="history-list">
+        <li v-for="city in data.cities" :key="city.id">
+          <router-link
+            :to="{
+              name: 'Home',
+              params: {
+                name: city.name,
+                date: city.date,
+                degree: city.degree,
+              },
+            }"
+          >
+            {{ city.name }}
+          </router-link>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -60,8 +53,8 @@ export default {
   padding: 0.5em 1em;
   border-bottom: 2px solid transparent;
 }
-.history-list li:hover {
-  color: #50f6ab;
+.history-list a:hover {
+  color: #47c58a;
   cursor: pointer;
 }
 </style>

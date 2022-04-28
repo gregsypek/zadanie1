@@ -39,8 +39,7 @@ export default {
   methods: {
     fetchWeather(e) {
       if (e.key == "Enter") {
-        // Example on how to make an API call using your API key API call
-        // http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={API key}
+        // Example on how to make an API call using  API key is on Readme.md
         fetch(
           `${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`
         )
@@ -58,6 +57,7 @@ export default {
     },
 
     setResultsIntoDb(results) {
+      // create object who will be send into db.json file (an example object return from openweathermap is in README.md)
       let newWeather = {
         name: results.name,
         date: this.dateBuilder(),
@@ -68,6 +68,7 @@ export default {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newWeather),
       })
+        // currentWeather will be send as props into showWeathe component
         .then((this.currentWeather = newWeather))
         .catch((err) => console.error(err));
     },

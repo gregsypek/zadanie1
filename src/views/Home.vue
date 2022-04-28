@@ -14,7 +14,7 @@
       <showWeather :currentWeather="currentWeather" />
       <!-- check if params is send from history( was clicked in History page on any old weather record) -->
       <showWeather
-        v-if="this.$route.params.name"
+        v-if="this.$route.params.name && !showNew"
         :currentWeather="this.$route.params"
       />
     </main>
@@ -34,6 +34,8 @@ export default {
       query: "",
       weather: {},
       currentWeather: null,
+      // if false -  hide result from history list (if someone want search new one and old is printed on the screen - prevent double results)
+      showNew: false,
     };
   },
   methods: {
@@ -48,7 +50,10 @@ export default {
             return res.json();
           })
           // .then(this.setResults)
-          .then(this.setResultsIntoDb);
+          .then(this.setResultsIntoDb)
+          // clean input field
+          .then((this.query = ""))
+          .then((this.showNew = true));
       }
     },
     dateBuilder() {

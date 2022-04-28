@@ -55,4 +55,10 @@ length: 1
 [[Prototype]]: Array(0)
 wind: {speed: 6.17, deg: 80}
 [[Prototype]]: Object
+
+6. To fetch data from fictional db.json file
+  -  npm i json-server
+  - npx json-server --watch data/db.json or json-server --watch data/db.json
+
+
 ```

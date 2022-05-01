@@ -47,7 +47,7 @@ body {
   font-size: 18px;
 }
 a.router-link-active {
-  border-bottom: 2px solid #00ce89;
+  border-bottom: 2px solid gray;
   padding-bottom: 4px;
 }
 nav {
@@ -60,7 +60,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #50f6ab;
+  color: #333;
 }
 
 main {

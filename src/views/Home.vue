@@ -2,15 +2,16 @@
   <div class="home">
     <main>
       <!-- search input -->
-      <form @submit.prevent class="search-box">
+      <form @submit.prevent="fetchWeather" class="search-box">
         <input
           type="text"
           class="search-bar"
           placeholder="Enter city..."
           v-model="query"
           @keyup="addNewQuery(query)"
+          required
         />
-        <button @click="fetchWeather">Search</button>
+        <button>Search</button>
       </form>
       <!-- <showWeather :currentWeather="currentWeather" /> -->
       <!-- check if params is send from history( was clicked in History page on any old weather record) -->
@@ -95,20 +96,38 @@ export default {
 
 <style >
 .search-box {
+  display: flex;
   width: 100%;
   margin-bottom: 30px;
 }
 .search-box .search-bar {
   display: block;
+  margin: 0 auto;
   width: 100%;
+  max-width: 200px;
   padding: 15px;
   color: inherit;
   font-size: 20px;
-  border: none;
+  border: 2px solid gray;
   outline: none;
   border-radius: 5px;
 }
 .search-box .search-bar:focus {
-  background-color: #eee;
+  background-color: #fff;
+  border: 2px solid #333;
+}
+.search-box button {
+  padding: 0.5em 1.5em;
+  font-size: 18px;
+  background-color: darkgrey;
+  color: #333;
+  margin-left: 1rem;
+  /* border: 2px solid darkcyan; */
+  border-radius: 5px;
+}
+.search-box button:hover,
+.search-box button:focus {
+  background-color: #333;
+  color: white;
 }
 </style>

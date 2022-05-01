@@ -1,33 +1,37 @@
 <template>
   <!-- serach results -->
-  <div class="weather-wrap" v-if="currentWeather">
+  <div class="weather-wrap" v-if="displayWeather">
     <div class="location-box">
-      <div class="location">{{ currentWeather.name }}</div>
-      <div class="date">{{ currentWeather.date }}</div>
+      <div class="location">{{ displayWeather.name }}</div>
+      <div class="date">{{ dateBuilder }}</div>
     </div>
     <div class="weather-box">
-      <div class="tem">{{ Math.round(currentWeather.degree) }}</div>
+      <div class="tem">{{ Math.round(displayWeather.main.temp) }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  props: ["currentWeather"],
+  props: ["displayWeather"],
+  computed: {
+    ...mapGetters(["dateBuilder"]),
+  },
 };
 </script>
 
 <style>
 /* styling results */
 .location-box .location {
-  color: #fff;
+  color: #333;
   font-size: 32px;
   font-weight: bold;
   text-align: center;
 }
 .location-box .date {
   text-align: center;
-  color: #fff;
+  color: #333;
   font-size: 20px;
   font-weight: normal;
   font-size: italic;
@@ -36,10 +40,10 @@ export default {
 .weather-box .tem {
   text-align: center;
   padding-inline: 20px;
-  color: #fff;
+  color: #333;
   font-size: 100px;
   font-weight: bold;
-  background-color: rgba(255, 255, 255, 0.3);
+  /* background-color: rgba(255, 255, 255, 0.3); */
   border-radius: 10px;
   margin-block: 30px;
 }

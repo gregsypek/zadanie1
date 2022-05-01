@@ -10,11 +10,17 @@ export default createStore({
 		currentWeather: null,
 		// if false -  hide result from history list (if someone want search new one and old is printed on the screen - prevent double results)
 		showNew: false,
+		date: null,
 		cities: [],
 	},
 	getters: {
-		dateBuilder() {
+		// dateBuilder() {
+		// 	let d = new Date().toLocaleString();
+		// 	return d;
+		// },
+		dateBuilder: (state) => {
 			let d = new Date().toLocaleString();
+			state.date = d;
 			return d;
 		},
 	},
@@ -32,13 +38,14 @@ export default createStore({
 			// Example on how to make an API call using  API key is on Readme.md
 			// context.commit("addNewQuery");
 			console.log("here", context.state);
-			let data = await fetch(
+			await fetch(
 				`${context.state.url_base}weather?q=${context.state.newQuery}&units=metric&APPID=${context.state.api_key}`
 			)
 				.then((res) => res.json())
 				.then((json) => {
 					console.log(typeof json, json);
 					context.commit("addToCities", json);
+					context.currentWeather = json;
 				});
 		},
 	},

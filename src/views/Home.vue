@@ -13,7 +13,7 @@
         />
         <button>Search</button>
       </form>
-      <!-- <showWeather :currentWeather="currentWeather" /> -->
+      <showWeather :displayWeather="cities[cities.length - 1]" />
       <!-- check if params is send from history( was clicked in History page on any old weather record) -->
       <!-- <showWeather
         v-if="this.$route.params.name && !showNew"
@@ -23,6 +23,7 @@
     <!-- <p v-for="(city, index) in cities" :key="index">{{ city.name }}></p> -->
     <p>{{ newQuery }}</p>
     <p>{{ cities }}</p>
+    <p v-if="currentWeather">current: {{ currentWeather }}</p>
   </div>
 </template>
 
@@ -50,7 +51,7 @@ export default {
   //   };
   // },
   computed: {
-    ...mapState(["cities", "newQuery"]),
+    ...mapState(["cities", "newQuery", "currentWeather"]),
     // async fetchWeather(e) {
     //   if (e.key == "Enter") {
     //     // Example on how to make an API call using  API key is on Readme.md
@@ -97,18 +98,17 @@ export default {
 <style >
 .search-box {
   display: flex;
+  justify-content: center;
   width: 100%;
   margin-bottom: 30px;
 }
 .search-box .search-bar {
-  display: block;
-  margin: 0 auto;
   width: 100%;
   max-width: 200px;
   padding: 15px;
   color: inherit;
   font-size: 20px;
-  border: 2px solid gray;
+  border: 2px solid #808080;
   outline: none;
   border-radius: 5px;
 }
@@ -122,12 +122,10 @@ export default {
   background-color: darkgrey;
   color: #333;
   margin-left: 1rem;
-  /* border: 2px solid darkcyan; */
   border-radius: 5px;
 }
 .search-box button:hover,
 .search-box button:focus {
-  background-color: #333;
-  color: white;
+  background-color: #9d9d9d;
 }
 </style>

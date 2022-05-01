@@ -18,6 +18,7 @@
         :currentWeather="this.$route.params"
       />
     </main>
+    <h2>{{ $store.state.counter }}</h2>
   </div>
 </template>
 
@@ -49,7 +50,6 @@ export default {
             console.log("res", res);
             return res.json();
           })
-          // .then(this.setResults)
           .then(this.setResultsIntoDb)
           // clean input field
           .then((this.query = ""))

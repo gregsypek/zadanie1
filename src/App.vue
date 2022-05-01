@@ -30,8 +30,8 @@ export default {};
   box-sizing: border-box;
 }
 body {
-  background-color: #333;
-  color: white;
+  background-color: #eee;
+  color: #333;
 }
 
 /* nav */

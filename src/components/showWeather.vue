@@ -6,7 +6,9 @@
       <div class="date">{{ dateBuilder }}</div>
     </div>
     <div class="weather-box">
-      <div class="tem">{{ Math.round(displayWeather.main.temp) }}</div>
+      <div class="tem">
+        {{ Math.round(displayWeather.main.temp) }}<span>&#8451;</span>
+      </div>
     </div>
   </div>
 </template>

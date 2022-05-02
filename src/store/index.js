@@ -14,14 +14,40 @@ export default createStore({
 		cities: [],
 	},
 	getters: {
-		// dateBuilder() {
-		// 	let d = new Date().toLocaleString();
-		// 	return d;
-		// },
 		dateBuilder: (state) => {
-			let d = new Date().toLocaleString();
+			let d = new Date();
 			state.date = d;
-			return d;
+			let months = [
+				"Styczeń",
+				"Luty",
+				"Marzec",
+				"Kwiecień",
+				"Maj",
+				"Czerwiec",
+				"Lipiec",
+				"Sierpień",
+				"Wrzesień",
+				"Październik",
+				"Listopad",
+				"Grudzień",
+			];
+			let days = [
+				"Niedziela",
+				"Poniedziałek",
+				"Wtorek",
+				"Środa",
+				"Czwartek",
+				"Piątek",
+				"Sobota",
+			];
+			let day = days[d.getDay()];
+			let date = d.getDate();
+			let month = months[d.getMonth()];
+			let year = d.getFullYear();
+
+			let time = d.toLocaleTimeString("pl-PL");
+			return `${day} ${date} ${month} ${year} 
+			${time}`;
 		},
 	},
 	mutations: {

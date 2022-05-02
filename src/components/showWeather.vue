@@ -6,9 +6,25 @@
       <div class="date">{{ dateBuilder }}</div>
     </div>
     <div class="weather-box">
+      <div class="des">{{ displayWeather.weather[0].description }}</div>
       <div class="tem">
         {{ Math.round(displayWeather.main.temp) }}<span>&#8451;</span>
       </div>
+      <p>
+        wschód słońca:
+        <!-- time returned from API is in seconds, not miliseconds as we wont here - so * 1000 -->
+        {{
+          new Date(displayWeather.sys.sunrise * 1000).toLocaleTimeString(
+            "pl-PL"
+          )
+        }}
+      </p>
+      <p>
+        zachód słońca:
+        {{
+          new Date(displayWeather.sys.sunset * 1000).toLocaleTimeString("pl-PL")
+        }}
+      </p>
     </div>
   </div>
 </template>
@@ -48,6 +64,11 @@ export default {
   /* background-color: rgba(255, 255, 255, 0.3); */
   border-radius: 10px;
   margin-block: 30px;
+}
+.weather-box .des {
+  font-size: 48px;
+  text-transform: uppercase;
+  margin-top: 1rem;
 }
 .weather-box .weather {
   text-align: center;

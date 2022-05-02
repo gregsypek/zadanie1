@@ -3,14 +3,12 @@
     <h1>Historia lokalizacji</h1>
     <div>
       <ul class="history-list">
-        <li v-for="(city, index) in cities" :key="index">
+        <li v-for="(city, index) in cities" :key="index" :data-index="index">
           <router-link
             :to="{
               name: 'Home',
               params: {
-                name: city.name,
-                date: city.date,
-                degree: city.degree,
+                index: index,
               },
             }"
           >

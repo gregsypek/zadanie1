@@ -13,8 +13,12 @@
         />
         <button>Search</button>
       </form>
-      <!-- show only last one from array  -->
-      <showWeather :displayWeather="cities[cities.length - 1]" />
+      <!-- display current weather or show weather from history where index as params is send  -->
+      <showWeather
+        v-if="this.$route.params.index"
+        :displayWeather="cities[this.$route.params.index]"
+      />
+      <showWeather v-else :displayWeather="cities[cities.length - 1]" />
     </main>
 
     <p v-if="currentWeather">current: {{ currentWeather }}</p>

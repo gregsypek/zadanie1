@@ -25,12 +25,10 @@
 <script>
 import { mapState } from "vuex";
 
-// import data from "../../data/db.json";
 export default {
   data() {
     return {
       history: [],
-      // data: data,
     };
   },
   computed: {
@@ -46,8 +44,6 @@ export default {
 }
 .history-list {
   margin-top: 20px;
-  /* background: #fff; */
-  /* font-weight: bold; */
   padding: 2em;
   font-size: 18px;
   border-radius: 5px;

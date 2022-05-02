@@ -5,11 +5,7 @@ export default createStore({
 		api_key: "a9e58a19d0374ddd9a5108b9b5cef1e0",
 		url_base: "http://api.openweathermap.org/data/2.5/",
 		newQuery: "",
-
 		weather: {},
-		currentWeather: null,
-		// if false -  hide result from history list (if someone want search new one and old is printed on the screen - prevent double results)
-		showNew: false,
 		date: null,
 		cities: [],
 	},
@@ -60,18 +56,16 @@ export default createStore({
 	},
 	actions: {
 		async fetchWeather(context) {
-			// console.log(context);
 			// Example on how to make an API call using  API key is on Readme.md
 			// context.commit("addNewQuery");
-			console.log("here", context.state);
+			// console.log("what context includes", context.state);
 			await fetch(
 				`${context.state.url_base}weather?q=${context.state.newQuery}&units=metric&APPID=${context.state.api_key}`
 			)
 				.then((res) => res.json())
 				.then((json) => {
-					console.log(typeof json, json);
+					// console.log(typeof json, json);
 					context.commit("addToCities", json);
-					context.currentWeather = json;
 				});
 		},
 	},

@@ -53,7 +53,6 @@ export default {
   font-size: 20px;
   font-weight: normal;
   font-size: italic;
-  /* text-align: center; */
 }
 .weather-box .tem {
   text-align: center;
@@ -61,7 +60,6 @@ export default {
   color: #333;
   font-size: 100px;
   font-weight: bold;
-  /* background-color: rgba(255, 255, 255, 0.3); */
   border-radius: 10px;
   margin-block: 30px;
 }

@@ -19,9 +19,11 @@
         :displayWeather="cities[this.$route.params.index]"
       />
       <showWeather v-else :displayWeather="cities[cities.length - 1]" />
+
+      <showError v-if="isError" />
     </main>
 
-    <p v-if="currentWeather">current: {{ currentWeather }}</p>
+    <!-- <p v-if="currentWeather">current: {{ currentWeather }}</p> -->
   </div>
 </template>
 
@@ -29,16 +31,17 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 
 import showWeather from "../components/showWeather.vue";
+import showError from "../components/showError.vue";
 export default {
   name: "Home",
-  components: { showWeather },
+  components: { showWeather, showError },
   data() {
     return {
       query: "",
     };
   },
   computed: {
-    ...mapState(["cities", "newQuery", "currentWeather"]),
+    ...mapState(["cities", "newQuery", "currentWeather", "isError"]),
   },
   methods: {
     ...mapMutations(["addToCities", "addNewQuery"]),
